@@ -1,0 +1,70 @@
+//plugins {
+////	id 'java'
+//	id "org.springframework.boot" version "${springbootVersion}"
+//	id 'io.spring.dependency-management' version "${dependencyManagerVersion}"
+//}
+plugins {
+	id 'java'
+	id "org.springframework.boot" version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+group = 'com.nikiko'
+version = '1.0.0'
+//sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+repositories {
+	mavenCentral()
+}
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(17))
+	}
+}
+
+//if (!System.getProperty("java.home").contains(java.toolchain.languageVersion.get().toString())) {
+//	def msg = ('JDK in this project: ' + System.getProperty('java.home') + '\n' +
+//			'In this project, you should use JDK-' + java.toolchain.languageVersion.get())
+//	throw new GradleException(msg)
+//}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+
+	implementation "io.r2dbc:r2dbc-postgresql:$r2dbcVersion"
+	implementation "org.postgresql:postgresql:$postgreSqlVersion"
+
+	//implementation "org.flywaydb:flyway-core:$flywayDbVersion"
+	implementation "com.google.code.findbugs:jsr305:$googleFindBugsVersion"
+
+	implementation "org.mapstruct:mapstruct:$mapStructVersion"
+
+	implementation "io.jsonwebtoken:jjwt:$jsonWebTokenVersion"
+	implementation "javax.xml.bind:jaxb-api:$jaxbApiVersion"
+	implementation 'org.projectlombok:lombok:1.18.18'
+
+	compileOnly('org.projectlombok:lombok')
+	annotationProcessor "org.projectlombok:lombok"
+	annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
+
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+//compileOptions {
+//	sourceCompatibility 17
+//	targetCompatibility 17
+//}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
