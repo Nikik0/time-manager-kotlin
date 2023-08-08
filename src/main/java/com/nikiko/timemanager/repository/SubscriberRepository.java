@@ -5,12 +5,13 @@ import com.nikiko.timemanager.entity.SubscriberEntity;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.data.repository.cdi.Eager;
+import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
-
+@Repository
 public interface SubscriberRepository extends R2dbcRepository<SubscriberEntity, Long> {
     @Query("DELETE from subscribers where id = $1")
     Mono<Void> deleteById(Long id);

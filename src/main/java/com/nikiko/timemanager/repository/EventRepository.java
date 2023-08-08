@@ -4,11 +4,12 @@ import com.nikiko.timemanager.entity.EventEntity;
 import org.springframework.data.r2dbc.repository.Modifying;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
-
+@Repository
 public interface EventRepository extends R2dbcRepository<EventEntity, Long> {
     //Flux<EventEntity> getEventEntitiesByOwner_id(Long id);
     //@Modifying
