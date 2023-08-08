@@ -21,7 +21,7 @@ public class UserEntity {
     private String name;
     private String password;
     private boolean blocked;
-    @Column("role")
+    @Column("user_role")
     private UserRole userRole;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
